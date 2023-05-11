@@ -4,6 +4,7 @@ import { ProductService } from './productservice';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { PersonService } from './services/person.service';
+import { Person } from './models/person.model';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent {
   productDialog: boolean;
 
   products: Product[];
+  persons: Person[];
 
   product: Product;
 
@@ -39,7 +41,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.productService.getProducts().then((data) => (this.products = data));
-    this.personService.getPersons().then((res) => console.log(res));
+    this.personService.getPersons().then((res) => (this.persons = res));
   }
 
   openNew() {
