@@ -27,6 +27,7 @@ export class AppComponent {
   persons: Person[];
 
   product: Product;
+  person: Person;
 
   selectedProducts: Product[];
 

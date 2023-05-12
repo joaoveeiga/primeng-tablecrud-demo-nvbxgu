@@ -60,14 +60,14 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-        <h5 class="p-m-0">Manage Products</h5>
+        <h5 class="p-m-0">Pessoas</h5>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input
             pInputText
             type="text"
             (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Search..."
+            placeholder="Buscar..."
           />
         </span>
       </div>
@@ -95,9 +95,10 @@
         <th pSortableColumn="phone">
           Telefone <p-sortIcon field="phone"></p-sortIcon>
         </th>
-        <th pSortableColumn="note">
+        <th style="width:12rem" pSortableColumn="note">
           Observações <p-sortIcon field="note"></p-sortIcon>
         </th>
+        <th style="width:8rem"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-person>
@@ -108,15 +109,31 @@
         <td>{{ person.name }}</td>
         <td>{{ person.born }}</td>
         <td>{{ person.gender }}</td>
-        <td>{{ person.height }}</td>
-        <td>{{ person.weight }}</td>
+        <td>{{ person.height.toFixed(2) }}</td>
+        <td>{{ person.weight.toFixed(2) }}</td>
         <td>{{ person.phone }}</td>
         <td>{{ person.note }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success p-mr-2"
+            (click)="editProduct(product)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            (click)="deleteProduct(product)"
+          ></button>
+        </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
-        No total existem {{ person ? persons.length : 0 }} pessoas.
+        No total existem {{ persons ? persons.length : 0 }} pessoas.
       </div>
     </ng-template>
   </p-table>
